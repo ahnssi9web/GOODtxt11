@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+    </style>
+</head>
+
+
+<body>
+
+
+<div id="video_list">
+    <video controls autoplay width="400px" height="400px" target="idx-contents" ></video>
+</div>
+
+    <span><input   type="number" id="guess1" value=39></span>
+    <input type="button" onclick="Calculate()" value="확인">
+
+    <script>
+		function Calculate() {
+			var GuessCon1 = document.getElementById("guess1").value;
+			ahnno = GuessCon1;
+	}
+	</script>
+		
+
+<p>
+<button id="play"> 계속 듣기</button>
+<button id="random"> 임의대로 재생 </button>
+<button id="next"> 장사익0-1 백낙청2-3 ahn45깨꼬닥5-   ahn44이등병612- 끝 강아지체조2118-83=2035  </button>
+</p>
+	
+
+<p id='name'> 현재 연주되는 곡명이 보입니다. </p>
+<p id="text"> ahn --->> 연주곡 간신히 찾았다. </p>	
+<p id="text2"> ahnno -->> 연주곡 번호 </p>	
+
+<script>
+			document.getElementById('play').addEventListener('click', function(){
+				playvideo();
+			}, false);
+		//
+			document.getElementById('random').addEventListener('click', function(){
+				randomvideo();
+			}, false);			
+		//
+			document.getElementById('next').addEventListener('click', function(){
+				nextvideo();
+			}, false);
+</script>
+
+
+<script>
+		// Playlist array
+			var files = [
+				
+
+				"https://ahnssi9web.github.io/GOODvideo12/Unbelievable Long Range Goals Ronaldo, Suarez, Figo.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/이 댕댕이의 IQ를 예상해보시오.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/Comedy moments in football.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/Cristiano Ronaldo Superhuman Moments1.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/Cristiano Ronaldo Superhuman Moments2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/Goals worth watching 100 times1.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/Goals worth watching 100 times2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/Goals worth watching 100 times3.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/Goals worth watching 100 times4.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추] 감동적인 프랑스 팔 음악단.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추] 참 아름다운 세상이지요.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추] 축구의 신 발재간 보숑.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추]신기한 맥주병 나오기1.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추]신기한 맥주병 나오기2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추]조각상 마술.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[기발기발] 트럼프를 한 대 떄린 남자의 여유있는 모습.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/개가 게임하는 것 방해하지 마.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/개같은 놈이란 칭찬.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/개도 마스크를 사용하네.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/거리 조각상 꿈쩍도 안하네.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/남편을 팝니다.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/냄비로 나체 가리기.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/닭 알 묘기.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/닭대가리 아니야.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/닭알알알.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/답답한 촌노인들 미래의 내모습.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/당구 기술 3.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/당구 기술2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/당구 연습.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/당구 천재 9살.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/당구기술 24.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/발가벗고 공연 웃겨요.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/백두대간 협곡열차 V-TRAIN 기차여행.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/부부의 멋진 모습.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/비번 없이 와이파이 1초만에 잡는법 (집, 카페 다됩니다ㅋㅋㅋ).mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/비번 없이 와이파이 1초만에 잡는법.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/상록수 2020 뮤직비디오.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/새싹처럼 우리도 쑥쑥 일어서봅시다.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/소가 우물물을 퍼 마시네.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/소주 공장 자동화1.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/소주 공장 자동화2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/손가락 그림자 놀이.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/순식간에 불어나는 강물.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/술 끊고 있단다.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/술 없이는 못살아.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/숨도 못쉬게 웃기는 레전드 졸업연설 코난 오브라이언 하버드 2000 - 1of2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/숨도 못쉬게 웃기는 레전드 졸업연설 코난 오브라이언 하버드 2000 - 2of2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/시골 노부부들의 자식 편지.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/시력.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/신기한 그림자놀이.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/신기한 마술.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/싸이 (PSY) 나팔바지 떼창 성균관대학교 축제.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/어린이 암벽 등산.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/어린이 암벽 멋져요.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/어이쿠 허탈해라.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/얼굴로 탁구 정신없어라.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/에너지 로봇.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/에너지송.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/에스파냐 까니（西班牙斗牛曲）웃김^^.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/우주에서 바라본 아름다운 지구.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/웃고 윙크하는 강아지.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/이 새의 아이큐를 계산해보세요 #Shorts.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/이럴수가 - 위험해요.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/이태리 휘파람 가수.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/자기 머리깎기.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/자식들에게 편지2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/재간둥이 축구소년.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/재미있게 사는 로봇.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/재미있는 체조1.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/재미있는 탁구.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/재미있는 탁구1.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/전설의 중거리 슛.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/전설적인 중거리 골 #2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/정말 0.5초 차이로 살아 감.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/정사면체 돌리기.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/제5대 화성탐사 로버 화성 착륙 성공1.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/제5대 화성탐사 로버 화성 착륙 성공2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/짝궁과의 춤.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/짝사랑하면 생기는 일 #Shorts.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/차니1.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/차니2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/천재 축구 소녀.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/촛불끄기 시합.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/충격적인 춤.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/치매2단계.gif",
+				"https://ahnssi9web.github.io/GOODvideo11/타짜가 공개하는 악마의 손기술 - 1of2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/타짜가 공개하는 악마의 손기술 - 2of2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/탁구 명장면 - 1of2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/탁구 명장면 - 2of2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/탁구 명장면 10 - 1of2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/탁구 명장면 10 - 2of2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/탁구 명장면11.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/탁구 명장면12.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/탁구 이래야 이기는 것인가.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/탁구 장난 묘수.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/탁구대에서 배구공으로 뭐하는겨.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/태권도장을 웃음바다로 만든 너무 귀여운 소년.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/폐활량 검사.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/프랑스 팔 음악단.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/할머니생일 107 아님 10살.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/훌라후프 1.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/훌라후프 2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/흥 나 삐졌어.mp4",
+
+				"https://ahnssi9web.github.io/GOODvideo11/[강추] 보기만 해도 아찔한데 어찌 사는가요 - 1of2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추] 야바위꾼에게 속는 이유 - 1of4.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추] 이런 춤도 있군요.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추] 이렇게 유연할 수.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추] 이마위에서1.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추] 자전거묘기.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추] 정말 대단한 개로군요.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추] 창조경제 마술.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추] 코키리살리기1.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추] 코키리살리기2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추] 페트병으로 수납용기 만들기.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추]강아지를 뺏기지 않으려는 어미개.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추]난쟁이 흉내 마슬.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추]날아다니는 피아노.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추]놀랄만한 재주1.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추]느끼하고 재미있는 마술.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추]동물의 정서.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추]신기한 맥주병 나오기1.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추]신기한 연주.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추]이럴수가 권총 사형.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추]재미있는 마술.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추]조각상 마술.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추강추] 축구공의 달인 - 1of2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/가짜 부부의 춤.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/각종 신기한 기계들.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/강아지의 체온.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/개같은 놈이란 칭찬.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/개무시하면 당한다.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/걸어야 오래 건강하게 산다.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/계곡물이 불어나는 속도.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/고마운 개.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/골인에 기뻐서 넘어진 개.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/공굴리기1.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/괴기한 마술.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/기가 막힌 손동작.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/기가막힌 체조 부부.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/기발한 차들 말이 되나.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/날아다니는 사자들.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/날아다니는 피아노.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/남편 흉보기.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/남편을 팝니다.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/내 나이 60부터는.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/내 나이 81세부터.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/놀라운 마술.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/놀랄만한 예술.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/누가 개사료 만졌어.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/눈요기하면 혼나요.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/단체 체조 팔힘으로도.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/단체 체조.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/닭알알알.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/대단한 균형1.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/대륙의 말도 안되는 장인들.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/대학로 입담꾼.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/도구를 다룰 줄 아는군.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/독수리와 산양의 싸움.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/딜라이라 탐존스.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/마술 21.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/마술 비둘기.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/마술 사기 치는 방법 3.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/마술 사기 치는 방법.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/마술 사기 치는 방법2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/마술 속임수1.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/마술 속임수2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/마술 어찌된 일.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/마술 의자와 꽃.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/마술 하고 싶으신 분 - 1of2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/마술.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추] 놀라운 의자 마술.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/[강추] 누워서 대단하다 눈물이 난다.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/멋지군요.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/멋진 체조 남녀.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/멋진 폭포.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/메타버스 춤1.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/묘기21.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/묘기22.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/묘기31.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/묘기41.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/무술의 고수들.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/미친 실력자들의 믿을수없는 빠른 솔로 연주.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/박지성 골장면.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/발가벗고 공연 웃겨요.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/발레 체조.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/발재주11.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/발재주12.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/발재주13.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/발재주14.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/발재주15.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/베트남 묘기01.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/베트남 묘기02.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/병원 옥상의 다람쥐.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/복 배달.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/봉 주고받으며 옷벗기 웃겨요.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/봉마술101.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/봉체조 101.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/봐도 봐도 신기.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/부부.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/부부의 멋진 모습.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/불장난 마술.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/비누방울 쇼.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/비둘기 마술.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/비싸네 무쵸.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/사다리 묘기.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/사람은 절대 안 변한다.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/서양 노인들 춤.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/서커스 11.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/서커스 무용.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/세상에 이런일이 이사.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/소주 공장 자동화1.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/소주 공장 자동화2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/손가락 맞추기.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/손재주 있으신 분.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/손재주11.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/손재주12.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/손재주13.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/손재주14.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/손재주15.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/손재주16.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/손재주21.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/손재주22.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/손재주와 발재주.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/손흥민11.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/손흥민12.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/손흥민에게 굴욕 당한 수비수들.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/술 끊고 있단다.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/술 취한 동물들.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/스님과 같이 불공을 강아지들.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/스카프 매는방법-1.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/스카프 매는방법-2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/시골 노부부들의 자식 편지.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/시원한 하루.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/신기방기 묘기끝판왕.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/신기한 그림자놀이.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/신기한 연주.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/아내와의 차이 극복.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/아버지 난 이제부터 그만 먹을련다.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/아버지 아들의 싸움.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/마술103.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/만능 여행 가방.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/말의 춤.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/머리탁구.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/암벽1.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/어린 소녀의 무예.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/어린 소년의 무술.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/어린애가 보고 있어요.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/어린이들의 곡예1.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/얼굴로 탁구 정신없어라.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/엉덩이 커피 자판기.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/에구구 놀래서.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/열차 선로 위를 달리는 자동차.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/예의룰 아는 개.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/옷 갈아입기 신공.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/옷 갈아입기.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/옷 바꿔입기.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/욕심쟁이 노래.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/우주에서 본 지구.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/웃고 윙크하는 강아지.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/웃기는 묘기 쌍쌍춤이 아니래.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/원숭이와 개 멋지다.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/원형기구 마술.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/유연한 몸1.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/유연한 몸2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/유연한 몸3.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/유연한 몸4.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/유연한 몸6.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/윤석열 노래.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/이게 웬 떡이야.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/이래도 마실래요.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/이럴수가 - 위험해요.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/이렇게 유연할 수.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/이름써준 여인이 어항속에.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/이상한 폭포.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/이태리 휘파람 가수.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/인생은 돌고 돌아요 순환.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/있을때 잘해.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/자식들에게 편지2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/자전거 묘기 실패.gif",
+				"https://ahnssi9web.github.io/GOODvideo11/자전거묘기1.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/재미있는 체조1.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/재미있는 탁구.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/재치있는 농담.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/전문가1.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/전문가2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/전문가21.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/전문가22.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/정사면체 돌리기.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/쥐에게 쫒기는 고양이 본적 있수.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/짝궁과의 춤.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/참 아름다운 세상이지요.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/천재 축구 소녀.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/청바지 바늘질.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/체조.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/체조의 대가.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/초등학생들의 기상천외한 웃긴 답안지.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/축구 묘기.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/축구선수가 너무 영리하면.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/칠순의 삶.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/캬아악.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/코로나19 미스터트롯.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/아이디어.mp4",
+				"https://ahnssi9web.github.io/GOODvideo11/암벽0.mp4",
+
+				"https://ahnssi9web.github.io/GOODvideo12/탁구 명장면 - 1of2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/탁구 명장면 - 2of2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/탁구 명장면11.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/탁구 명장면12.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/태권도 묘기 골드부저.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/태권도장을 웃음바다로 만든 너무 귀여운 소년.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/트럼프를 한 대 때린 남자.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/폐활량 검사.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/프랑스 마임 놀랍구나.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/프랑스 팔 음악단.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/할머니 수다.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/황당한 F1 그랑프리 피트스탑 사고.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/훌라후프 1.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/훌라후프 2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/하나님이 기가막혀.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/자기중심적이라 남의 이야기를 못듣는 사오정 영란.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/역대 대통령들이 부르는 Dynamite (다이너마이트).mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/서울대 의대 이형기_정호영 쉬운 방식 통해 돈‧명예 대물림 욕망.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/류근 시인이 슬퍼하는 이유.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/러시아 정교회 수장 푸틴편 정교회 분.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/도올 젊은이들이 보수화 걱정이다.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/도올 예수를 믿는다는 게 도대체 무슨 뜻이냐.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/도올 예수를 믿는다는 것이 무엇인가.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/도올 내가 왜 이런 환경에서 태어났나.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/도올 기독교 자녀교육 못하고 선악으로만 따지고 문제가 있다.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/개미집꽃등에벌 곰개미집에 알을 낳아 기른다 탁란이지2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/개미집꽃등에벌 곰개미집에 알을 낳아 기른다 탁란이지1.mp4",
+
+				"https://ahnssi9web.github.io/GOODvideo12/KakaoTalk_20220813_115240330.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/전설적인 중거리 골 #2.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/전설의 중거리 슛.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/인류가 스스로 멸종의 길을 걷고 있다고 정말 믿기 싫지만 증거가 너무 많습니다....mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/IMPOSSIBLE Moments In Football.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/죽음의 과정 시작됐다는 섬나라들… 대재앙 닥친다.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/중독성 지리는 윤석열 퇴진송에 율동까지.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/오늘 아침 토성의 모습.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/이재명 큰절하자 2초후 현장 반응 초대박.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/황소 공격에 사람들 날아가자 환호.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/이보다 특별한 신부 입장은 없다! 신부 입장 레전드 #shorts.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/우리부부 왜 싸웠더라.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/스티커 자국 쉽게 제거하는 방법 #shorts.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/여행갈 때 비닐장갑을 꼭 챙겨야 하는 이유! 유용한 꿀팁 #shorts.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/살 쪄서 못입는 바지 3초만에 입을 수 있는 방법.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/바늘에 실을 1초만에 끼울 수 있다.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/축구는 역시 팀 스포츠입니다.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/일회용 커피컵을 화장실에 꽂으면 생기는 놀라운 효과 #shorts.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/Dad will do everything for his daughter to win.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/손 안 아프게 주머니 드는법.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/개 같은 주인놈.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/He is a LEGEND for this.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/IMPOSSIBLE Moments In Football.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/KakaoTalk_20220813_115240330.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/LAUNCH OF SHIPS INTO THE OCEAN #SHORTS.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/개 같은 주인놈.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/목욕하기 싫어 벽 뒤에 숨어있다가.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/바늘에 실을 1초만에 끼울 수 있다.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/손 안 아프게 주머니 드는법.mp4",
+				"https://ahnssi9web.github.io/GOODvideo12/아빠, 돌 먹지마 찐건나블리.mp4",
+
+				
+				
+				
+				
+				
+				
+				
+				
+				"https://ahnssi9web.github.io/GOODvideo12/바늘에 실을 1초만에 끼울 수 있다.mp4"
+				];
+
+		// Get the audio element
+		//	let _video = document.querySelector('#video_list video');
+		//var _video = document.getElementById('video_list');
+		// Get the audio element
+			let _video = document.querySelector('#video_list video');
+
+</script>
+
+
+
+<script>
+
+		function playvideo() {
+
+			_video.src = files[ahnno]; // 다른 미디어로 소스 변경
+			_video.addEventListener('ended', playvideo, false)
+						
+				
+			var str = document.getElementById("text");
+			str.innerHTML = files[ahnno];
+
+			var str2 = document.getElementById("text2");
+			str2.innerHTML = ahnno;					
+		}
+
+
+
+
+		function nextvideo() {
+			// Check for last audio file in the playlist
+			if (ahnno === files.length - 1) {
+				ahnno= 0;
+			} else {
+				ahnno++;
+			}
+			_video.src = files[ahnno]; // 다른 미디어로 소스 변경
+			_video.addEventListener('ended', nextvideo, false)
+			
+			var str = document.getElementById("text");
+			str.innerHTML = files[ahnno];
+
+			var str2 = document.getElementById("text2");
+			str2.innerHTML = ahnno;					
+		}
+
+
+
+
+
+		function randomvideo() {
+		
+			ahnno = Math.floor(Math.random() * files.length);
+			
+			if (ahnno === files.length - 1) {
+				ahnno= 0;
+			} 
+			
+			_video.src = files[ahnno]; // 다른 미디어로 소스 변경
+			_video.addEventListener('ended', randomvideo, false)
+			
+			var str = document.getElementById("text");
+			str.innerHTML = files[ahnno];
+
+			var str2 = document.getElementById("text2");
+			str2.innerHTML = ahnno;					
+		}
+
+
+</script>
+
+</body>
+</html>
